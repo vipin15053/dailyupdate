@@ -1,0 +1,38 @@
+<!-- Created By : Vipin Yadav  -->
+
+<div class="w3-container" *ngIf="materialListData">
+	<div class="w3-panel w3-round-small w3-teal">
+		<h3>Material List <button routerLink="/add" class="w3-button w3-green custom-button"><i class="w3-medium  fa fa-plus"></i> Add</button></h3>
+	</div>
+	<span><i class="w3-medium fa fa-search"></i> Search : <input class="" type="search" [(ngModel)]='filterData' placeholder="Search by Materials"></span>
+
+	<div class="w3-panel w3-green" *ngIf="(materialListData | filter:filterData).length === 0">
+		<h3>Oh no</h3>
+		<p>No Records found <span *ngIf="filterData"> with search "{{filterData}}"</span> </p>
+	</div>
+	<div class="w3-panel w3-light-grey w3-padding-16 w3-card-2" *ngIf="(materialListData | filter:filterData).length != 0">
+		<table class="w3-table w3-striped w3-bordered">
+			<tr>
+				<th><i class="w3-medium custom-icon fa fa-refresh"></i> Sr. No.</th>
+				<!-- <th>ID</th> -->
+				<th><i class="w3-medium custom-icon fa fa-calendar"></i> Date</th>
+				<th><i class="w3-medium custom-icon fa fa-cart-arrow-down"></i> Materials</th>
+				<th><i class="w3-medium custom-icon fa fa-user"></i> Added By</th>
+				<th><i class="w3-medium custom-icon fa fa-inr"></i> Price</th>
+				<th><i class="w3-medium custom-icon fa fa-pencil"></i> Update</th>
+				<th><i class="w3-medium custom-icon fa fa-trash"></i> Delete</th>
+			</tr>
+			<tr *ngFor="let material of materialListData | filter:filterData; index as i;" appHighlightMaterial>
+				<td>{{i +1}}</td>
+				<td class="pointer" [routerLink]="['detail', material._id]"> {{material?.date |date:'dd/MM/yyyy'}}</td>
+				<td class="pointer" [routerLink]="['detail', material._id]">{{material.materials |concatMaterialName:30}}</td>
+				<td class="pointer" [routerLink]="['detail', material._id]">{{material.addedBy}}</td>
+				<td class="pointer" [routerLink]="['detail', material._id]">{{material.totalPrice}}</td>
+				<td><button [routerLink]="['update', material._id]" class="w3-button w3-blue">Update</button></td>
+				<td><button (click)="deletematerial(material._id);" class="w3-button w3-red">Delete</button></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<!-- Created By : Vipin Yadav  -->

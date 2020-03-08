@@ -1,0 +1,40 @@
+<!-- Created By : Vipin Yadav  -->
+
+<div class="w3-container" *ngIf="materialDetail">
+	<div class="w3-panel w3-round-small w3-teal">
+		<h3>Material Details <button [routerLink]="['/update', index]" class="w3-button w3-blue custom-button"> <i class="w3-medium fa fa-pencil"></i> Edit</button> <button routerLink="/" class="w3-button w3-green custom-button margin-right"> <i class="w3-medium fa fa-chevron-left"></i> Back</button></h3>
+	</div>
+	<div class="w3-card custom-card"><br>
+		<div class="w3-row">
+			<h4 class="w3-col m6">
+				<i class="custom-icon fa fa-user"></i> Added By
+				: <b>{{materialDetail.addedBy}}</b>
+			</h4>
+			<h4 class="w3-col m6" *ngIf="materialDetail.updatedBy">
+				<i class="custom-icon fa fa-user"></i> Last Updated By
+				: <b>{{materialDetail.updatedBy}}</b>
+			</h4>
+		</div>
+		<hr>
+		<table class="w3-table w3-bordered">
+			<tr>
+				<td><i class="w3-medium custom-icon fa fa-calendar"></i><b>Date</b></td>
+				<td>{{materialDetail.date |date:'dd/MM/yyyy'}}</td>
+			</tr>
+			<tr>
+				<td><i class="w3-medium text-center custom-icon fa fa-cart-arrow-down"></i><b>Materials Name</b></td>
+				<td><i class="w3-medium text-center custom-icon fa fa-inr"></i><b>Materials Price</b></td>
+			</tr>
+			<tr *ngFor="let mtl of materialDetail.materials">
+				<td>{{mtl.materialName}}</td>
+				<td>{{mtl.price}}</td>
+			</tr>
+			<tr>
+				<td><i class="w3-medium custom-icon fa fa-inr"></i> <b>Total Price</b></td>
+				<td><i class="w3-medium custom-icon fa fa-inr"></i><b class="total-price">{{materialDetail.totalPrice}}</b></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<!-- Created By : Vipin Yadav  -->
