@@ -35,6 +35,57 @@
  	margin: 5px 6px 5px 0px;
  	font-size: 20px!important;
  }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input[type="date"] {
+    position: relative;
+}
+
+/* create a new arrow, because we are going to mess up the native one
+see "List of symbols" below if you want another, you could also try to add a font-awesome icon.. */
+input[type="date"]:after {
+
+    font-weight: 900; 
+    color: #555;
+    padding: 0 5px;
+}
+
+/* change color of symbol on hover */
+input[type="date"]:hover:after {
+    color: #bf1400;
+}
+
+/* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+}
+
+/* adjust increase/decrease button */
+input[type="date"]::-webkit-inner-spin-button {
+    z-index: 1;
+}
+
+ /* adjust clear button */
+ input[type="date"]::-webkit-clear-button {
+     z-index: 1;
+ }
 
 /**
  * Created By : Vipin Yadav 
